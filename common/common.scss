@@ -1,9 +1,18 @@
-body:not(.topic-banners) {
-  .topic-banner-container {
+body:not(.topic-banners-lists) {
+  .topic-banner-lists {
     display: none;
   }
 }
-body.topic-banners {
+body.topic-banners-lists {
+  &.custom-sidebar {
+    tbody.topic-list-body + div {
+        display: block;
+    }
+  }
+  tbody.topic-list-body + div {
+        grid-area: banner;
+        display: table-caption;
+  }
   .topic-banner-container {
     display: flex;
     width: 100%;
@@ -11,14 +20,41 @@ body.topic-banners {
     align-items: center;
     margin-bottom: 1rem;
     background-color: $banner-bg-color;
-    .topic-banner {
-      padding: 2.5rem 3rem;
+    box-shadow: 0 0 0 20px $banner-bg-color;
+    clip-path: inset(0 -20px);
+    .topic-banner-lists {
+      padding: 2.5rem 0;
       @media screen and (max-width: 450px) {
-        padding: 1.5px;
+        padding: 1.5px 0;
       }
       h1 {
         margin-bottom: 0.5em;
       }
+    }
+  }
+  @media screen and (max-width: 766px) {
+    tbody.topic-list-body + div {
+      display: table-caption;
+    }
+  }
+}
+
+@media screen and (min-width: 767px) {
+  body.topic-banners-lists {
+    &.custom-sidebar {
+      .contents > .topic-list {
+        grid-template-areas:
+          "sidebar banner"
+          "sidebar head"
+          "sidebar body";
+      }
+    }
+    .contents > .topic-list {
+      grid-template-areas:
+        "banner"
+        "head"
+        "body";
+        grid-template-rows: auto 50px auto;
     }
   }
 }
