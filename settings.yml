@@ -10,7 +10,7 @@ topic_banners:
     <p>For performance reasons it's recommended that you close banner topics so there aren't any replies</p>
 banner_bg_color:
   type: string
-  default: "var(--highlight-low-or-medium)"
+  default: "#f5f7fa"
   description: "A valid CSS color declaration. You can also use Discourse's default color variables."
 show_to_group:
   type: string
@@ -22,11 +22,9 @@ show_to_visitors:
   description: "Show banners only to anonymous visitors. Group setting needs to be empty."
 plugin_outlet:
   type: enum
-  default: "above-main-container"
+  default: "after-topic-list-body"
   choices:
-    - "above-main-container"
-    - "below-site-header"
-    - "discovery-list-container-top"
+    - "after-topic-list-body"
   description: "Advanced layout setting"
 show_url:
   type: bool

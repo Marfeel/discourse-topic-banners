@@ -1,8 +1,8 @@
-import { ajax } from "discourse/lib/ajax";
-import { createWidget } from "discourse/widgets/widget";
 import { getOwner } from "discourse-common/lib/get-owner";
-import { h } from "virtual-dom";
+import { ajax } from "discourse/lib/ajax";
 import PostCooked from "discourse/widgets/post-cooked";
+import { createWidget } from "discourse/widgets/widget";
+import { h } from "virtual-dom";
 
 function defaultSettings() {
   return {};
@@ -21,14 +21,14 @@ function parseSetups(raw) {
 function createTopicBanner(taxonomy) {
   const setup = setups[taxonomy];
   const post = [this.getPost(setup["post"])];
-  document.querySelector("body").classList.add("topic-banners");
-  return h("div.topic-banner", post);
+  document.querySelector("body").classList.add("topic-banners-lists");
+  return h("div.topic-banner-lists", post);
 }
 
 const postCache = {};
 const setups = parseSetups(settings.topic_banners);
 
-createWidget("topic-banners", {
+createWidget("topic-banners-lists", {
   tagName: "div.topic-banner-container",
   html() {
     const router = getOwner(this).lookup("router:main");
@@ -55,7 +55,7 @@ createWidget("topic-banners", {
     }
 
     // Remove classes if no sidebar returned
-    document.querySelector("body").classList.remove("topic-banners");
+    document.querySelector("body").classList.remove("topic-banners-lists");
   },
   getPost(id) {
     if (!postCache[id]) {
